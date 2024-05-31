@@ -1,4 +1,4 @@
-@main def hello() =
+@main def hello(): Unit =
   //  parentElement
   val text =
     """
@@ -9,5 +9,5 @@
           </middle>
       </top>
       """
-  val elem = xmlElement.parse(text)
+  val elem = xmlFile.parse(text)
   println(elem)//.toString.replace(",", ",\n"))

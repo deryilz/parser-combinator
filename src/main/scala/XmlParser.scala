@@ -67,3 +67,5 @@ def parentElement: Parser[XmlElement] =
 
 def xmlElement: Parser[XmlElement] =
   Parser.wrap(singleElement.or(parentElement).surroundedBy(Parser.whitespace.repeated(0)))
+  
+def xmlFile: Parser[XmlElement] = xmlElement.plusIgnore(Parser.end)
