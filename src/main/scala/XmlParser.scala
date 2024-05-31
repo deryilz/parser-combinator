@@ -66,6 +66,8 @@ def parentElement: Parser[XmlElement] =
     .map { case (((id, props), subs), _) => XmlElement(id, props, subs) }
 
 def xmlElement: Parser[XmlElement] =
-  Parser.wrap(singleElement.or(parentElement).surroundedBy(Parser.whitespace.repeated(0)))
+  Parser.wrap(() =>
+    singleElement.or(parentElement).surroundedBy(Parser.whitespace.repeated(0)))
   
-def xmlFile: Parser[XmlElement] = xmlElement.plusIgnore(Parser.end)
+def xmlFile: Parser[XmlElement] =
+  xmlElement.plusIgnore(Parser.end)

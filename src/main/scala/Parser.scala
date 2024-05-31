@@ -73,6 +73,6 @@ object Parser {
     else Left(haystack))
 
   // to avoid stack overflow, make it lazy
-  def wrap[A](parser: => Parser[A]): Parser[A] =
-    Parser(haystack => parser.parse(haystack))
+  def wrap[A](getParser: () => Parser[A]): Parser[A] =
+    Parser(haystack => getParser().parse(haystack))
 }
